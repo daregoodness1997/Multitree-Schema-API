@@ -1,0 +1,25 @@
+{
+  "name": "Tree Schema",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-async-errors": "^3.1.1",
+    "helmet": "^6.0.0",
+    "mongoose": "^5.11.10"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
