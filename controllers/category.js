@@ -12,9 +12,32 @@ const addCategory = async (req, res) => {
   res.status(200).json({ category });
 };
 
-const getCategory = async (req, res) => {
-  const category = await Category.find();
-  res.status(200).json({ category });
+const getAllCategory = async (req, res) => {
+  const { slug } = req.query;
+  const queryObject = {};
+  queryObject;
+  if (slug) {
+    queryObject.slug = slug;
+  }
+  const category = await Category.find(queryObject);
+  res.status(200).json({ nbHits: category.length, category });
 };
 
-module.exports = { addCategory, getCategory };
+const getDecedantCategory = async (req, res) => {
+  const { category_id } = req.query;
+  const queryObject = {};
+  queryObject;
+  if (category_id) {
+    queryObject['ancestors._id'] = category_id;
+  }
+
+  const category = await Category.find({
+    'ancestors._id': req.query.category_id,
+  })
+    .select({ _id: false, name: true })
+    .exec();
+
+  res.status(201).json({ nbHits: category.length, category });
+};
+
+module.exports = { addCategory, getAllCategory, getDecedantCategory };
